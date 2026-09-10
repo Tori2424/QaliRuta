@@ -1,0 +1,41 @@
+/* pantalla bienvenida */
+.welcome-screen {
+  background: linear-gradient(180deg, #e6fcf0 0%, #ffffff 40%);
+}
+
+.top-spacer {
+  height: 8vh;
+}
+
+/* carrusel de bienvenido */
+.onboarding-indicators {
+  bottom: -40px;
+}
+
+.onboarding-box {
+  max-width: 280px;
+  height: 170px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.onboarding-icon {
+  font-size: 5rem;
+}
+
+.bg-slide-green {
+  background-color: #e6f7ec;
+}
+
+.bg-slide-orange {
+  background-color: #fff0e6;
+}
+
+.logo-title {
+  font-size: 2rem;
+}
+
+.logo-icon-box {
+  width: 45px;
+  height: 45px;
+}

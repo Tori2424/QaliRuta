@@ -1,0 +1,133 @@
+/* PANTALLA CREAR MENÚ  */
+body {
+  background-color: #fafbfc;
+}
+
+/* Cabecera fija */
+.sticky-top-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background-color: #fafbfc;
+  z-index: 1000;
+}
+
+.back-link {
+  color: #10b981;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.form-label-custom {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.input-custom {
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  color: #0f172a;
+  box-shadow: none !important;
+}
+
+.input-custom:focus {
+  border-color: #10b981;
+}
+
+/* Tarjetas de ingredientes */
+.ingredient-card {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ingredient-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.check-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.check-circle i {
+  display: none;
+  font-size: 0.8rem;
+}
+
+.ingredient-name {
+  color: #334155;
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+.iron-info {
+  display: none;
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ESTADO SELECCIONADO */
+.ingredient-card.selected {
+  background-color: #f0fdf4;
+  border-color: #22c55e;
+}
+
+.ingredient-card.selected .check-circle {
+  background-color: #22c55e;
+  border-color: #22c55e;
+  color: white;
+}
+
+.ingredient-card.selected .check-circle i {
+  display: block;
+}
+
+.ingredient-card.selected .ingredient-name {
+  color: #0f172a;
+  font-weight: 500;
+}
+
+.ingredient-card.selected .iron-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.calc-btn-container {
+  position: fixed;
+  bottom: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(250, 251, 252, 1) 75%,
+    rgba(250, 251, 252, 0)
+  );
+  padding: 20px 20px 10px 20px;
+  z-index: 900;
+}

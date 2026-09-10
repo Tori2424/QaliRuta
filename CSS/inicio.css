@@ -1,0 +1,119 @@
+/* PANTALLA DE INICIO  */
+.section-title {
+  color: #1a202c;
+}
+
+.user-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+}
+
+.badge-oro {
+  background-color: #fff9e6;
+  border: 1px solid #ffeba3;
+}
+
+.bg-soft-orange {
+  background-color: #fff5f5;
+  border: 1px solid #fee2e2;
+}
+.bg-soft-green {
+  background-color: #f0fdf4;
+  border: 1px solid #dcfce7;
+}
+.bg-soft-purple {
+  background-color: #faf5ff;
+  border: 1px solid #f3e8ff;
+}
+.bg-soft-yellow {
+  background-color: #fffbeb;
+  border: 1px solid #fef3c7;
+}
+
+.action-card {
+  border-radius: 20px;
+  padding: 1.5rem 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.action-card:hover {
+  transform: translateY(-2px);
+}
+
+.icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MAPA SIMULADO */
+.map-container {
+  height: 160px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #e6f4ea;
+  border: 1px solid #dcfce7;
+}
+
+.map-bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image:
+    linear-gradient(white 4px, transparent 4px),
+    linear-gradient(90deg, white 4px, transparent 4px);
+  background-size: 60px 60px;
+  background-position: center center;
+}
+
+.map-pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #198754;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pin-1 {
+  top: 20%;
+  left: 30%;
+}
+.pin-2 {
+  top: 60%;
+  left: 20%;
+}
+.pin-3 {
+  top: 40%;
+  left: 70%;
+  background-color: #6c757d;
+}
+.pin-4 {
+  top: 75%;
+  left: 55%;
+}
+
+/* MENÚS RECIENTES */
+.recent-menu-card {
+  border-radius: 20px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.menu-icon-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+}

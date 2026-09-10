@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QaliRuta - Crear Menú</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/global.css" rel="stylesheet" />
+    <link href="css/crear_menu.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="app-container d-flex flex-column min-vh-100 position-relative">
+      <header class="sticky-top-header px-4 pt-4 pb-2">
+        <a href="menus.html" class="back-link d-inline-block mb-3"
+          >← Mis menús</a
+        >
+        <h2 class="fw-bold mb-1 text-dark">Crear Menú</h2>
+        <p class="text-muted small mb-0">Información del menú</p>
+      </header>
+
+      <main class="px-4" style="padding-top: 140px; padding-bottom: 160px">
+        <div class="mb-4">
+          <label class="form-label-custom">NOMBRE DEL MENÚ</label>
+          <input
+            type="text"
+            class="form-control input-custom"
+            placeholder="Ej. Sangrecita con ensalada"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label-custom">PRECIO (S/)</label>
+          <input
+            type="number"
+            class="form-control input-custom"
+            placeholder="S/ 0.00"
+          />
+        </div>
+
+        <label id="contador-ingredientes" class="form-label-custom mb-3 d-block"
+          >LISTA DE INGREDIENTES (0 SELECCIONADOS)</label
+        >
+
+        <div class="d-flex flex-column gap-3">
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Sangrecita</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 29.5 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Hígado de res</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 8.0 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Arroz blanco</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.8 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Ensalada fresca</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.5 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Papita sancochada</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.6 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Lentejas cocidas</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 3.3 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Bistec de res</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 3.4 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Espinaca</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 2.7 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Beterraga</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.8 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Tomate fresco</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.3 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Pepino</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.2 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Jugo de naranja</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.2 mg
+            </div>
+          </div>
+
+          <!-- Ingrediente 13 -->
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Cushuro (Algas andinas)</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 25.4 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Tarwi (Chocho)</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 7.1 mg
+            </div>
+          </div>
+
+          <div class="ingredient-card">
+            <div class="ingredient-left">
+              <div class="check-circle"><i class="bi bi-check"></i></div>
+              <p class="ingredient-name">Charqui de alpaca</p>
+            </div>
+            <div class="iron-info">
+              <i class="bi bi-droplet-fill text-danger me-1"></i> 3.2 mg
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="calc-btn-container">
+        <button
+          class="btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm fs-6 text-white"
+        >
+          Calcular nutrientes →
+        </button>
+      </div>
+
+      <footer
+        class="bottom-nav bg-white d-flex justify-content-between align-items-center px-4 py-2"
+      >
+        <div
+          class="nav-item text-center text-muted"
+          onclick="window.location.href = 'inicio.html'"
+        >
+          <i class="bi bi-house-door fs-5"></i>
+          <div>Inicio</div>
+        </div>
+        <div
+          class="nav-item active text-center text-success"
+          onclick="window.location.href = 'menus.html'"
+        >
+          <i class="bi bi-shop fs-5"></i>
+          <div>Menús</div>
+        </div>
+        <div class="nav-item text-center text-muted">
+          <i class="bi bi-geo-alt fs-5"></i>
+          <div>Mapa</div>
+        </div>
+        <div class="nav-item text-center text-muted">
+          <i class="bi bi-journal-bookmark fs-5"></i>
+          <div>Cursos</div>
+        </div>
+        <div class="nav-item text-center text-muted">
+          <i class="bi bi-person fs-5"></i>
+          <div>Perfil</div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/crear_menu.js"></script>
+  </body>
+</html>

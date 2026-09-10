@@ -1,0 +1,71 @@
+/* PANTALLA MIS MENÚS */
+body {
+  background-color: #fafbfc;
+}
+
+/* Encabezado */
+.sticky-top-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background: linear-gradient(180deg, #fff3e0 0%, #ffffff 85%);
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.menu-list-card {
+  border-radius: 18px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: transform 0.15s ease;
+}
+
+.menu-list-card:active {
+  transform: scale(0.98);
+}
+
+.menu-icon-bg {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-color: #fef2f2;
+}
+
+.text-blood-info {
+  color: #ef4444;
+  font-size: 0.8rem;
+}
+
+.text-price {
+  color: #16a34a;
+  font-size: 0.82rem;
+}
+
+.text-calendar-info {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.text-dark-blue {
+  color: #0f172a;
+}
+
+/* Boton Crear Menu */
+.create-menu-btn-container {
+  position: fixed;
+  bottom: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(250, 251, 252, 1) 65%,
+    rgba(250, 251, 252, 0)
+  );
+  padding-top: 30px;
+  padding-bottom: 10px;
+  z-index: 900;
+}
