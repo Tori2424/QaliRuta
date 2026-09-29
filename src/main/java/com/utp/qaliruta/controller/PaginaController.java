@@ -8,13 +8,27 @@ public class PaginaController {
 
     @GetMapping("/")
     public String mostrarIndex() {
-        // Esto le dice a Spring Boot que busque "index.html" en la carpeta templates
         return "index"; 
     }
     
     @GetMapping("/login")
     public String mostrarLogin() {
         return "login"; 
+    }
+    
+    @GetMapping("/inicio")
+    public String mostrarInicio() {
+        return "inicio";
+    }
+
+    @GetMapping("/crear_menu")
+    public String mostrarCrearMenu() {
+        return "crear_menu";
+    }
+
+    @GetMapping("/menus")
+    public String mostrarMenus() {
+        return "menus";
     }
     
 }
