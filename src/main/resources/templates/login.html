@@ -66,18 +66,20 @@
               </span>
               <input
                 type="password"
+                id="passwordInput"
                 class="form-control border-start-0 border-end-0 ps-2"
                 placeholder="••••••••••"
               />
               <span
                 class="input-group-text bg-white border-start-0 text-muted pe-3"
+                id="togglePassword"
+                style="cursor: pointer"
               >
-                <i class="bi bi-eye"></i>
+                <i class="bi bi-eye" id="eyeIcon"></i>
               </span>
             </div>
           </div>
 
-          <!-- Enlace que activa el Modal -->
           <div class="text-end mb-4">
             <a
               href="#"
@@ -164,5 +166,8 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/js/login.js"></script>
+    
   </body>
 </html>

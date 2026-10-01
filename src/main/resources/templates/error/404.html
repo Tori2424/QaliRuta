@@ -1,19 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página no encontrada - QaliRuta</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="d-flex align-items-center justify-content-center vh-100 bg-light text-center">
+  <head
+    th:replace="~{fragments/componentes :: head-comun('Página no encontrada', 'ninguno')}"
+  ></head>
+
+  <body
+    class="d-flex align-items-center justify-content-center vh-100 bg-light text-center"
+  >
     <div>
-        <h1 class="display-1 fw-bold text-danger">404</h1>
-        <h2 class="fs-3">¡Ups! Ruta equivocada.</h2>
-        <p class="lead text-muted mb-4">La página que buscas fue movida de QaliRuta o no existe.</p>
-        <a th:href="@{/inicio}" class="btn btn-success btn-lg px-4">
-            <i class="bi bi-house-door me-2"></i>Volver al Inicio
-        </a>
+      <h1 class="display-1 fw-bold text-danger">404</h1>
+      <h2 class="fs-3">¡Ups! Ruta equivocada.</h2>
+      <p class="lead text-muted mb-4">
+        La página que buscas fue movida de QaliRuta o no existe.
+      </p>
+      <a th:href="@{/inicio}" class="btn btn-success btn-lg px-4">
+        <i class="bi bi-house-door me-2"></i>Volver al Inicio
+      </a>
     </div>
-</body>
+  </body>
 </html>
