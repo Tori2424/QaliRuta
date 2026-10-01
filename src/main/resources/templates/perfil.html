@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil - QaliRuta</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/perfil.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="text-center pt-5 pb-4 perfil-header-bg">
+        <div class="position-relative d-inline-block mt-3">
+          <div
+            class="rounded-circle d-flex align-items-center justify-content-center mx-auto perfil-avatar-box"
+          >
+            <span class="fs-2 fw-medium text-white">J</span>
+          </div>
+
+          <div
+            class="position-absolute bottom-0 start-100 translate-middle p-1 bg-success rounded-circle border border-white border-2 d-flex align-items-center justify-content-center perfil-btn-editar"
+          >
+            <i class="bi bi-pencil-fill text-white perfil-icono-editar"></i>
+          </div>
+        </div>
+
+        <h2 class="mt-3 mb-1 fs-5 fw-bold text-dark">José Pérez García</h2>
+        <p class="text-muted small mb-3">Dueño de menú · Lima, Perú</p>
+
+        <div
+          class="d-inline-flex align-items-center border border-warning rounded-pill px-4 py-2 perfil-badge-oro"
+        >
+          <div class="me-2 fs-5 text-oro">
+            <i class="bi bi-award-fill"></i>
+          </div>
+          <div class="text-start lh-1">
+            <div class="fw-bold text-oro perfil-texto-sm">Nivel Oro</div>
+            <div class="text-muted perfil-texto-xs">
+              Válido hasta 30 ago 2026
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="bg-white pt-4 px-3 perfil-main-container">
+        <div class="row g-2 text-center mb-4">
+          <div class="col-4">
+            <div class="border rounded-4 py-3 px-1 shadow-sm h-100">
+              <div class="fs-4 fw-bold text-success">12</div>
+              <div class="text-muted perfil-stat-subtext">
+                Menús<br />publicados
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="border rounded-4 py-3 px-1 shadow-sm h-100">
+              <div class="fs-4 fw-bold text-morado">6</div>
+              <div class="text-muted perfil-stat-subtext">
+                Cursos<br />completados
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="border rounded-4 py-3 px-1 shadow-sm h-100">
+              <div class="fs-4 fw-bold text-naranja">
+                4.8 <i class="bi bi-star-fill ms-1 perfil-icono-estrella"></i>
+              </div>
+              <div class="text-muted perfil-stat-subtext">
+                Calificación<br />promedio
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <a
+            href="#"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none border-bottom border-light"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-verde"
+              >
+                <i class="bi bi-journal-text text-success fs-5"></i>
+              </div>
+              <span class="text-dark fw-medium perfil-list-texto"
+                >Menús publicados</span
+              >
+            </div>
+            <div class="d-flex align-items-center">
+              <span
+                class="badge bg-success bg-opacity-10 text-success rounded-pill me-2 px-2 py-1"
+                >12</span
+              >
+              <i class="bi bi-chevron-right text-muted small"></i>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none border-bottom border-light"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-morado"
+              >
+                <i class="bi bi-mortarboard-fill fs-5 text-morado"></i>
+              </div>
+              <span class="text-dark fw-medium perfil-list-texto"
+                >Cursos completados</span
+              >
+            </div>
+            <div class="d-flex align-items-center">
+              <span
+                class="badge rounded-pill me-2 px-2 py-1 bg-icon-morado text-morado"
+                >6</span
+              >
+              <i class="bi bi-chevron-right text-muted small"></i>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none border-bottom border-light"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-amarillo"
+              >
+                <i class="bi bi-award-fill fs-5 text-oro"></i>
+              </div>
+              <span class="text-dark fw-medium perfil-list-texto"
+                >Mi Distintivo</span
+              >
+            </div>
+            <div class="d-flex align-items-center">
+              <span
+                class="badge bg-warning bg-opacity-10 text-warning rounded-pill me-2 px-2 py-1"
+                >Oro</span
+              >
+              <i class="bi bi-chevron-right text-muted small"></i>
+            </div>
+          </a>
+
+          <a
+            href="#"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none border-bottom border-light"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-azul"
+              >
+                <i class="bi bi-map-fill text-info fs-5"></i>
+              </div>
+              <span class="text-dark fw-medium perfil-list-texto"
+                >Mi local en el mapa</span
+              >
+            </div>
+            <i class="bi bi-chevron-right text-muted small"></i>
+          </a>
+
+          <a
+            href="#"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none border-bottom border-light"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-gris"
+              >
+                <i class="bi bi-gear-fill text-secondary fs-5"></i>
+              </div>
+              <span class="text-dark fw-medium perfil-list-texto"
+                >Configuración</span
+              >
+            </div>
+            <i class="bi bi-chevron-right text-muted small"></i>
+          </a>
+
+          <a
+            href="/contacto"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none border-bottom border-light"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-rojo"
+              >
+                <i class="bi bi-question-circle-fill text-danger fs-5"></i>
+              </div>
+              <span class="text-dark perfil-list-texto">Ayuda y soporte</span>
+            </div>
+            <i class="bi bi-chevron-right text-muted small"></i>
+          </a>
+
+          <a
+            href="/login"
+            class="d-flex justify-content-between align-items-center py-3 text-decoration-none"
+          >
+            <div class="d-flex align-items-center">
+              <div
+                class="rounded-circle d-flex align-items-center justify-content-center me-3 perfil-icon-circle bg-icon-rojo"
+              >
+                <i class="bi bi-door-closed-fill text-danger fs-5"></i>
+              </div>
+              <span class="text-danger perfil-list-texto">Cerrar sesión</span>
+            </div>
+          </a>
+        </div>
+      </main>
+
+      <footer
+        class="bottom-nav bg-white d-flex justify-content-between align-items-center px-4 py-2"
+      >
+        <div
+          class="nav-item text-center text-muted cursor-pointer"
+          onclick="window.location.href = '/inicio'"
+        >
+          <i class="bi bi-house-door fs-5"></i>
+          <div>Inicio</div>
+        </div>
+        <div
+          class="nav-item text-center text-muted cursor-pointer"
+          onclick="window.location.href = '/menus'"
+        >
+          <i class="bi bi-shop fs-5"></i>
+          <div>Menús</div>
+        </div>
+        <div
+          class="nav-item text-center text-muted cursor-pointer"
+          onclick="window.location.href = '/mapa'"
+        >
+          <i class="bi bi-geo-alt fs-5"></i>
+          <div>Mapa</div>
+        </div>
+        <div
+          class="nav-item text-center text-muted cursor-pointer"
+          onclick="window.location.href = '/cursos'"
+        >
+          <i class="bi bi-journal-bookmark fs-5"></i>
+          <div>Cursos</div>
+        </div>
+        <div
+          class="nav-item active text-center text-success cursor-pointer"
+          onclick="window.location.href = '/perfil'"
+        >
+          <i class="bi bi-person-fill fs-5"></i>
+          <div>Perfil</div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

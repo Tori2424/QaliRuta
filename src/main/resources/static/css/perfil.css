@@ -1,0 +1,80 @@
+.perfil-header-bg {
+  background-color: #f2fbf7;
+}
+.perfil-main-container {
+  min-height: 60vh;
+  padding-bottom: 90px;
+}
+
+.perfil-avatar-box {
+  width: 80px;
+  height: 80px;
+  background-color: #198754;
+}
+.perfil-btn-editar {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transform: translate(-30%, -10%) !important;
+}
+.perfil-icono-editar {
+  font-size: 0.8rem;
+}
+
+.perfil-badge-oro {
+  background-color: rgba(246, 173, 85, 0.1);
+}
+.text-oro {
+  color: #f6ad55;
+}
+.perfil-texto-sm {
+  font-size: 0.8rem;
+}
+.perfil-texto-xs {
+  font-size: 0.7rem;
+}
+
+.perfil-stat-subtext {
+  font-size: 0.75rem;
+}
+.text-morado {
+  color: #8b5cf6;
+}
+.text-naranja {
+  color: #f59e0b;
+}
+.perfil-icono-estrella {
+  font-size: 0.9rem;
+}
+
+.perfil-list-texto {
+  font-size: 0.95rem;
+}
+
+.perfil-icon-circle {
+  width: 42px;
+  height: 42px;
+}
+
+.bg-icon-verde {
+  background-color: #e6f4ea;
+}
+.bg-icon-morado {
+  background-color: #f3e8ff;
+}
+.bg-icon-amarillo {
+  background-color: #fef3c7;
+}
+.bg-icon-azul {
+  background-color: #e0f2fe;
+}
+.bg-icon-gris {
+  background-color: #f1f5f9;
+}
+.bg-icon-rojo {
+  background-color: #fee2e2;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

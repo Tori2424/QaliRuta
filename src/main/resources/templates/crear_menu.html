@@ -19,9 +19,7 @@
   <body>
     <div class="app-container d-flex flex-column min-vh-100 position-relative">
       <header class="sticky-top-header px-4 pt-4 pb-2">
-        <a href="/menus" class="back-link d-inline-block mb-3"
-          >← Mis menús</a
-        >
+        <a href="/menus" class="back-link d-inline-block mb-3">← Mis menús</a>
         <h2 class="fw-bold mb-1 text-dark">Crear Menú</h2>
         <p class="text-muted small mb-0">Información del menú</p>
       </header>
@@ -227,15 +225,24 @@
           <i class="bi bi-shop fs-5"></i>
           <div>Menús</div>
         </div>
-        <div class="nav-item text-center text-muted">
+        <div
+          class="nav-item text-center text-muted"
+          onclick="window.location.href = '/mapa'"
+        >
           <i class="bi bi-geo-alt fs-5"></i>
           <div>Mapa</div>
         </div>
-        <div class="nav-item text-center text-muted">
+        <div
+          class="nav-item text-center text-muted"
+          onclick="window.location.href = '/cursos'"
+        >
           <i class="bi bi-journal-bookmark fs-5"></i>
           <div>Cursos</div>
         </div>
-        <div class="nav-item text-center text-muted">
+        <div
+          class="nav-item text-center text-muted"
+          onclick="window.location.href = '/perfil'"
+        >
           <i class="bi bi-person fs-5"></i>
           <div>Perfil</div>
         </div>

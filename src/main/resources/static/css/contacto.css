@@ -1,0 +1,63 @@
+.contacto-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.contacto-main {
+  min-height: 75vh;
+  padding-bottom: 100px;
+}
+
+.contacto-icon-box {
+  width: 70px;
+  height: 70px;
+  background-color: #fee2e2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-label-custom {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.form-control-custom {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  color: #334155;
+  transition: all 0.3s ease;
+}
+
+.form-control-custom:focus {
+  background-color: #ffffff;
+  border-color: #198754;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+}
+
+.btn-enviar {
+  background-color: #198754;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+  width: 100%;
+  transition: transform 0.2s;
+}
+
+.btn-enviar:active {
+  transform: scale(0.96);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

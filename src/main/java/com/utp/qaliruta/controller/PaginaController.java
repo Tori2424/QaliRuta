@@ -8,14 +8,14 @@ public class PaginaController {
 
     @GetMapping("/")
     public String mostrarIndex() {
-        return "index"; 
+        return "index";
     }
-    
+
     @GetMapping("/login")
     public String mostrarLogin() {
-        return "login"; 
+        return "login";
     }
-    
+
     @GetMapping("/inicio")
     public String mostrarInicio() {
         return "inicio";
@@ -30,5 +30,18 @@ public class PaginaController {
     public String mostrarMenus() {
         return "menus";
     }
+
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil";
+    }
+
+    @GetMapping("/contacto")
+    public String contacto() {
+        return "contacto";
+    }
+
+
+
     
 }
