@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
   
   <head
     th:replace="~{fragments/componentes :: head-comun('Menús - QaliRuta', '/css/menus.css')}"
@@ -12,7 +12,7 @@
         <p class="text-muted small mb-0">9 menús publicados</p>
       </header>
 
-      <main class="px-4 flex-grow-1 pb-5 mb-5" style="padding-top: 115px">
+      <main class="px-4 flex-grow-1 pb-5 mb-5 menus-main">
         <div class="menu-list-container mb-4 pb-5">
           <div
             class="menu-list-card d-flex align-items-center p-3 mb-3 bg-white"
@@ -25,7 +25,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Sangrecita con ensalada
               </h6>
@@ -50,7 +49,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Hígado encebollado + Arroz
               </h6>
@@ -75,7 +73,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Lentejas con pollo
               </h6>
@@ -100,7 +97,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Caldo de quinua + Bazo
               </h6>
@@ -125,7 +121,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Arroz con pollo
               </h6>
@@ -150,7 +145,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Estofado de res + Papa
               </h6>
@@ -175,7 +169,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Chaufa de sangrecita
               </h6>
@@ -200,7 +193,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Cau cau de bazo con arroz
               </h6>
@@ -225,7 +217,6 @@
             <div class="flex-grow-1">
               <h6
                 class="fw-bold mb-1 text-dark-blue"
-                style="font-size: 0.95rem"
               >
                 Seco de res con frijoles
               </h6>

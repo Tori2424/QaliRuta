@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
   <head
     th:replace="~{fragments/componentes :: head-comun('Inicio - QaliRuta', '/css/inicio.css')}"
   ></head>
@@ -11,14 +11,13 @@
       >
         <div>
           <p class="text-success fw-bold mb-0 small">Bienvenido</p>
-          <h2 class="fw-bold mb-0">Hola, José 👋</h2>
+          <h2 class="fw-bold mb-0">Hola, José</h2>
           <p class="text-muted small mb-0">¿Qué deseas hacer hoy?</p>
         </div>
 
         <div class="d-flex align-items-center">
           <i
-            class="bi bi-headset text-success fs-3 me-3"
-            style="cursor: pointer"
+            class="bi bi-headset text-success fs-3 me-3 cursor-pointer"
             onclick="window.location.href = '/contacto'"
           ></i>
           <div

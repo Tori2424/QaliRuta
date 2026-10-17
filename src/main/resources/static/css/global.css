@@ -1,3 +1,4 @@
+
 body {
   background-color: #e9ecef;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -6,20 +7,31 @@ body {
 }
 
 .app-container {
-  max-width: 414px;
-  margin: 0 auto;
-  background-color: #fafbfc;
+  width: 100%;
   min-height: 100vh;
+  background-color: #fafbfc;
   position: relative;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   overflow-x: hidden;
 }
 
 .text-orange {
   color: #f56565;
 }
+
 .text-purple {
   color: #6b46c1;
+}
+
+.text-gold {
+  color: #d69e2e;
+}
+
+.exito-check-icon {
+  font-size: 5rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .btn-success {
@@ -32,15 +44,12 @@ body {
   transform: scale(0.96);
 }
 
-
-/* NAVEGACIÓN INFERIOR (BARRA)  */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 414px;
   background-color: white;
   border-top: 1px solid #e2e8f0;
   border-radius: 25px 25px 0 0;
@@ -62,42 +71,15 @@ body {
   margin-bottom: 2px;
 }
 
-/* ADAPTACIÓN A PANTALLAS GRANDES */
-.app-container {
-  width: 100%;
-  max-width: 414px;
-  margin: 0 auto;
-  min-height: 100vh;
-  background-color: #fafbfc;
-  position: relative;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-}
-
-@media (min-width: 415px) {
-  body {
-    background-color: #cbd5e1 !important;
-    justify-content: center;
-  }
-}
-
-/* AUTO-AJUSTE PARA CUALQUIER PANTALLA */
-
-.app-container {
-  width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  background-color: #fafbfc;
-  position: relative;
-  overflow-x: hidden !important;
-}
-
-/* Fuerza a que las imágenes y carruseles no se desborden */
 .app-container img,
-.app-container svg,
+.app-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
 .carousel-inner,
 .carousel-item > div {
-  max-width: 100% !important;
-  height: auto;
+  max-width: 100%;
 }
 
 .app-container .row {
@@ -105,10 +87,9 @@ body {
   margin-right: 0 !important;
 }
 
-/* si la pantalla es más grande que un celular se aplica el formato de app centrada */
 @media (min-width: 576px) {
   body {
-    background-color: #cbd5e1 !important;
+    background-color: #cbd5e1;
     display: flex;
     justify-content: center;
   }
@@ -119,7 +100,6 @@ body {
     margin: 0 auto;
   }
 
-  /* Contenedores fijos limitados al ancho del contenedor */
   .sticky-top-header,
   .calc-btn-container,
   .create-menu-btn-container,

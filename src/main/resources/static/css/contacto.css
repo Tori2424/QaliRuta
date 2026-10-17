@@ -1,3 +1,12 @@
+.contacto-back-btn {
+  width: 40px;
+  height: 40px;
+}
+
+.contacto-headset-icon {
+  font-size: 2rem;
+}
+
 .contacto-header {
   background-color: #ffffff;
   border-bottom: 1px solid #f1f5f9;
@@ -58,6 +67,3 @@
   transform: scale(0.96);
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}

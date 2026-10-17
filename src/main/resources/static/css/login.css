@@ -1,4 +1,9 @@
 /* PANTALLA DE LOGIN */
+
+.login-hero-img {
+  max-width: 280px;
+}
+
 .login-header-bg {
   background: linear-gradient(180deg, #e6fcf0 0%, #f4fdf8 100%);
   border-bottom-left-radius: 30px;

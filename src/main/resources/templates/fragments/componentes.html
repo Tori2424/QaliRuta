@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <!-- Fragmento 2: Barra inferior -->
+    <!-- barra inferior -->
     <footer th:fragment="footer-nav(paginaActiva)" class="bottom-nav bg-white d-flex justify-content-between align-items-center px-4 py-2">
         
         <div th:class="'nav-item text-center cursor-pointer ' + (${paginaActiva == 'inicio'} ? 'active text-success' : 'text-muted')" onclick="window.location.href = '/inicio'">

@@ -1,6 +1,8 @@
 /* PANTALLA MIS MENÚS */
-body {
-  background-color: #fafbfc;
+
+/* Contenido principal (padding compensa el header fijo) */
+.menus-main {
+  padding-top: 115px;
 }
 
 /* Encabezado */
@@ -25,6 +27,10 @@ body {
 
 .menu-list-card:active {
   transform: scale(0.98);
+}
+
+.menu-list-card h6 {
+  font-size: 0.95rem;
 }
 
 .menu-icon-bg {
