@@ -1,14 +1,19 @@
 package com.utp.qaliruta.controller;
 
+import com.utp.qaliruta.service.MenuService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PaginaController {
+
+    private final MenuService menuService;
+
+    public PaginaController(MenuService menuService) {
+        this.menuService = menuService;
+    }
 
     @GetMapping("/")
     public String mostrarIndex() {
@@ -22,30 +27,18 @@ public class PaginaController {
 
     @GetMapping("/inicio")
     public String mostrarInicio(Model model) {
-        // lista simulada de menus recientes
-        List<String> menusRecientes = Arrays.asList(
-        "Sangrecita con ensalada", 
-            "Higado encebollado con arroz", 
-            "Lentejas con pollo"
-        );
+        // Obtenemos los menús directamente de la base de datos MySQL
+        model.addAttribute("listaMenus", menuService.listarTodos());
 
-        // se envia la lista al HTML con el nombre de listaMenus
-        model.addAttribute("listaMenus", menusRecientes);
-
-        //th:if para mostrar u ocultar el bloque de oro
-        boolean usuarioTieneOro = true; 
+        // th:if para mostrar u ocultar el distintivo de oro
+        boolean usuarioTieneOro = true;
         model.addAttribute("esOro", usuarioTieneOro);
         return "inicio";
     }
 
     @GetMapping("/crear_menu")
-    public String mostrarCrearMenu() {
-        return "crear_menu";
-    }
-
-    @GetMapping("/menus")
-    public String mostrarMenus() {
-        return "menus";
+    public String redirigirCrearMenu() {
+        return "redirect:/menus/nuevo";
     }
 
     @GetMapping("/perfil")
@@ -62,6 +55,4 @@ public class PaginaController {
     public String procesarContacto() {
         return "contacto_exito";
     }
-
-    
 }

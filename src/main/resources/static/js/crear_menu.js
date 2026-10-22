@@ -1,21 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // seleccionar todas las tarjetas y el texto del contador
     const tarjetasIngredientes = document.querySelectorAll('.ingredient-card');
     const contadorTexto = document.getElementById('contador-ingredientes');
+    const inputHierro = document.getElementById('inputHierro');
 
-    // funcion que cuenta cuantos estan selecionados y actualiza el texto
-    function actualizarContador() {
-        const cantidadSeleccionados = document.querySelectorAll('.ingredient-card.selected').length;
-        contadorTexto.textContent = `LISTA DE INGREDIENTES (${cantidadSeleccionados} SELECCIONADOS)`;
+    function actualizarCalculo() {
+        const seleccionados = document.querySelectorAll('.ingredient-card.selected');
+        if (contadorTexto) {
+            contadorTexto.textContent = `SUGERENCIAS RICAS EN HIERRO (${seleccionados.length} SELECCIONADOS)`;
+        }
+
+        // Si el usuario no ha escrito manualmente un valor o quiere sumar las sugerencias seleccionadas
+        if (seleccionados.length > 0 && inputHierro && (!inputHierro.value || inputHierro.dataset.autocalc === 'true')) {
+            let totalHierro = 0;
+            seleccionados.forEach(card => {
+                const h = parseFloat(card.dataset.hierro || '0');
+                totalHierro += h;
+            });
+            inputHierro.value = totalHierro.toFixed(1);
+            inputHierro.dataset.autocalc = 'true';
+        }
     }
 
-    // reaccion de cada tarjeta al hacer clickj
+    if (inputHierro) {
+        inputHierro.addEventListener('input', () => {
+            inputHierro.dataset.autocalc = 'false';
+        });
+    }
+
     tarjetasIngredientes.forEach(tarjeta => {
         tarjeta.addEventListener('click', () => {
             tarjeta.classList.toggle('selected');
-            actualizarContador();                 
+            actualizarCalculo();                 
         });
     });
-
-    // ejecuta el contador al cargar la pag por si hay ingredinetes preseleccionados
 });

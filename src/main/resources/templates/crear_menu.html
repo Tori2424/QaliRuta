@@ -1,207 +1,176 @@
 <!doctype html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
   <head
-    th:replace="~{fragments/componentes :: head-comun('QaliRuta - Crear Menú', '/css/crear_menu.css')}"
+    th:replace="~{fragments/componentes :: head-comun(${modoEdicion} ? 'QaliRuta - Editar Menú' : 'QaliRuta - Crear Menú', '/css/crear_menu.css')}"
   ></head>
 
   <body>
     <div class="app-container d-flex flex-column min-vh-100 position-relative">
       <header class="sticky-top-header px-4 pt-4 pb-2">
-        <a href="/menus" class="back-link d-inline-block mb-3">← Mis menús</a>
-        <h2 class="fw-bold mb-1 text-dark">Crear Menú</h2>
-        <p class="text-muted small mb-0">Información del menú</p>
+        <a th:href="@{/menus}" class="back-link d-inline-block mb-3">← Volver a menús</a>
+        <h2 class="fw-bold mb-1 text-dark" th:text="${modoEdicion} ? 'Editar Menú' : 'Crear Menú'">Crear Menú</h2>
+        <p class="text-muted small mb-0" th:text="${modoEdicion} ? 'Actualiza los datos del menú nutritivo' : 'Registra un menú balanceado contra la anemia'"></p>
       </header>
 
       <main class="px-4 crear-menu-main">
-        <div class="mb-4">
-          <label class="form-label-custom">NOMBRE DEL MENÚ</label>
-          <input
-            type="text"
-            class="form-control input-custom"
-            placeholder="Ej. Sangrecita con ensalada"
-          />
-        </div>
+        <form th:action="@{/menus/guardar}" th:object="${menu}" method="post" id="formMenu">
+          
+          <!-- ID oculto para la actualización (UPDATE) -->
+          <input type="hidden" th:field="*{id}" />
 
-        <div class="mb-4">
-          <label class="form-label-custom">PRECIO (S/)</label>
-          <input
-            type="number"
-            class="form-control input-custom"
-            placeholder="S/ 0.00"
-          />
-        </div>
+          <!-- Campo 1: Nombre -->
+          <div class="mb-3">
+            <label class="form-label-custom">NOMBRE DEL MENÚ *</label>
+            <input
+              type="text"
+              th:field="*{nombre}"
+              class="form-control input-custom"
+              th:classappend="${#fields.hasErrors('nombre')} ? 'is-invalid' : ''"
+              placeholder="Ej. Sangrecita con ensalada fresca"
+            />
+            <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+          </div>
 
-        <label id="contador-ingredientes" class="form-label-custom mb-3 d-block"
-          >LISTA DE INGREDIENTES (0 SELECCIONADOS)</label
-        >
+          <!-- Campo 2: Categoría (Relación FK) -->
+          <div class="mb-3">
+            <label class="form-label-custom">CATEGORÍA NUTRICIONAL *</label>
+            <select
+              th:field="*{categoria.id}"
+              class="form-select input-custom"
+              th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid' : ''"
+            >
+              <option value="" disabled selected>-- Seleccione una categoría --</option>
+              <option
+                th:each="cat : ${listaCategorias}"
+                th:value="${cat.id}"
+                th:text="${cat.nombre}"
+              ></option>
+            </select>
+            <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}"></div>
+          </div>
 
-        <div class="d-flex flex-column gap-3">
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Sangrecita</p>
+          <div class="row g-2 mb-3">
+            <!-- Campo 3: Precio -->
+            <div class="col-6">
+              <label class="form-label-custom">PRECIO (S/) *</label>
+              <input
+                type="number"
+                step="0.10"
+                min="0.50"
+                th:field="*{precio}"
+                class="form-control input-custom"
+                th:classappend="${#fields.hasErrors('precio')} ? 'is-invalid' : ''"
+                placeholder="0.00"
+              />
+              <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
             </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 29.5 mg
+
+            <!-- Campo 4: Hierro -->
+            <div class="col-6">
+              <label class="form-label-custom">HIERRO (mg Fe) *</label>
+              <input
+                type="number"
+                step="0.1"
+                min="0.1"
+                id="inputHierro"
+                th:field="*{contenidoHierro}"
+                class="form-control input-custom"
+                th:classappend="${#fields.hasErrors('contenidoHierro')} ? 'is-invalid' : ''"
+                placeholder="Ej. 12.5"
+              />
+              <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('contenidoHierro')}" th:errors="*{contenidoHierro}"></div>
             </div>
           </div>
 
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Hígado de res</p>
+          <!-- Campo 5: Descripción / Ingredientes -->
+          <div class="mb-4">
+            <label class="form-label-custom">DESCRIPCIÓN / INGREDIENTES *</label>
+            <textarea
+              th:field="*{descripcion}"
+              rows="3"
+              class="form-control input-custom"
+              th:classappend="${#fields.hasErrors('descripcion')} ? 'is-invalid' : ''"
+              placeholder="Detalla los alimentos e ingredientes principales de este menú..."
+            ></textarea>
+            <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
+          </div>
+
+          <!-- Sección visual interactiva de ingredientes de referencia -->
+          <label id="contador-ingredientes" class="form-label-custom mb-2 d-block text-muted"
+            >SUGERENCIAS RICAS EN HIERRO (CLICK PARA SELECCIONAR)</label
+          >
+
+          <div class="d-flex flex-column gap-2 mb-4">
+            <div class="ingredient-card" data-nombre="Sangrecita" data-hierro="29.5">
+              <div class="ingredient-left">
+                <div class="check-circle"><i class="bi bi-check"></i></div>
+                <p class="ingredient-name">Sangrecita de pollo</p>
+              </div>
+              <div class="iron-info">
+                <i class="bi bi-droplet-fill text-danger me-1"></i> 29.5 mg
+              </div>
             </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 8.0 mg
+
+            <div class="ingredient-card" data-nombre="Bazo de res" data-hierro="28.7">
+              <div class="ingredient-left">
+                <div class="check-circle"><i class="bi bi-check"></i></div>
+                <p class="ingredient-name">Bazo de res</p>
+              </div>
+              <div class="iron-info">
+                <i class="bi bi-droplet-fill text-danger me-1"></i> 28.7 mg
+              </div>
+            </div>
+
+            <div class="ingredient-card" data-nombre="Hígado de res" data-hierro="8.0">
+              <div class="ingredient-left">
+                <div class="check-circle"><i class="bi bi-check"></i></div>
+                <p class="ingredient-name">Hígado de res</p>
+              </div>
+              <div class="iron-info">
+                <i class="bi bi-droplet-fill text-danger me-1"></i> 8.0 mg
+              </div>
+            </div>
+
+            <div class="ingredient-card" data-nombre="Lentejas" data-hierro="3.3">
+              <div class="ingredient-left">
+                <div class="check-circle"><i class="bi bi-check"></i></div>
+                <p class="ingredient-name">Lentejas cocidas</p>
+              </div>
+              <div class="iron-info">
+                <i class="bi bi-droplet-fill text-danger me-1"></i> 3.3 mg
+              </div>
+            </div>
+
+            <div class="ingredient-card" data-nombre="Espinaca" data-hierro="2.7">
+              <div class="ingredient-left">
+                <div class="check-circle"><i class="bi bi-check"></i></div>
+                <p class="ingredient-name">Espinaca fresca</p>
+              </div>
+              <div class="iron-info">
+                <i class="bi bi-droplet-fill text-danger me-1"></i> 2.7 mg
+              </div>
             </div>
           </div>
 
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Arroz blanco</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.8 mg
-            </div>
+          <!-- Botón flotante para Guardar -->
+          <div class="calc-btn-container px-4">
+            <button
+              type="submit"
+              class="btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm fs-6 text-white"
+              th:text="${modoEdicion} ? '✓ Actualizar Menú' : '+ Guardar Menú'"
+            >
+              Guardar Menú
+            </button>
           </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Ensalada fresca</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.5 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Papita sancochada</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.6 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Lentejas cocidas</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 3.3 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Bistec de res</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 3.4 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Espinaca</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 2.7 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Beterraga</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.8 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Tomate fresco</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.3 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Pepino</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.2 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Jugo de naranja</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 0.2 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Cushuro (Algas andinas)</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 25.4 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Tarwi (Chocho)</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 7.1 mg
-            </div>
-          </div>
-
-          <div class="ingredient-card">
-            <div class="ingredient-left">
-              <div class="check-circle"><i class="bi bi-check"></i></div>
-              <p class="ingredient-name">Charqui de alpaca</p>
-            </div>
-            <div class="iron-info">
-              <i class="bi bi-droplet-fill text-danger me-1"></i> 3.2 mg
-            </div>
-          </div>
-        </div>
+        </form>
       </main>
-
-      <div class="calc-btn-container">
-        <button
-          class="btn btn-success w-100 rounded-pill py-3 fw-bold shadow-sm fs-6 text-white"
-        >
-          Calcular nutrientes →
-        </button>
-      </div>
 
       <footer
         th:replace="~{fragments/componentes :: footer-nav('menus')}"
       ></footer>
     </div>
 
-    <!-- bootstrap -->
+    <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/crear_menu.js"></script>
   </body>

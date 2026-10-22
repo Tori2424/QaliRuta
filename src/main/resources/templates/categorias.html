@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head
+    th:replace="~{fragments/componentes :: head-comun('Categorías - QaliRuta', 'ninguno')}"
+  ></head>
+
+  <body>
+    <div class="app-container d-flex flex-column min-vh-100">
+      <header class="sticky-top-header bg-white px-4 pt-4 pb-3 border-bottom">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <a th:href="@{/menus}" class="text-success text-decoration-none small fw-semibold d-block mb-1">
+              ← Volver a Menús
+            </a>
+            <h2 class="fw-bold mb-0 text-dark">Categorías</h2>
+            <p class="text-muted small mb-0" th:text="${#lists.size(listaCategorias)} + ' categorías activas'"></p>
+          </div>
+          <a th:href="@{/categorias/nueva}" class="btn btn-success btn-sm rounded-pill fw-semibold px-3 shadow-sm">
+            + Nueva
+          </a>
+        </div>
+      </header>
+
+      <main class="px-4 flex-grow-1 py-4 mb-5">
+        <!-- Notificaciones Flash -->
+        <div th:if="${mensajeExito}" class="alert alert-success alert-dismissible fade show rounded-4 py-2 px-3 mb-3 small" role="alert">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <span th:text="${mensajeExito}"></span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show rounded-4 py-2 px-3 mb-3 small" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i>
+          <span th:text="${error}"></span>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!-- Lista vacía -->
+        <div th:if="${#lists.isEmpty(listaCategorias)}" class="text-center py-5">
+          <i class="bi bi-folder-x text-muted fs-1 mb-2 d-block"></i>
+          <h6 class="fw-bold text-muted">No hay categorías creadas</h6>
+          <p class="text-muted small">Crea categorías para organizar tus menús contra la anemia.</p>
+        </div>
+
+        <!-- Listado dinámico de Categorías -->
+        <div class="d-flex flex-column gap-3">
+          <div
+            th:each="cat : ${listaCategorias}"
+            class="p-3 bg-white rounded-4 shadow-sm border border-light"
+          >
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <div class="d-flex align-items-center gap-2">
+                <div class="bg-success-subtle text-success rounded-3 p-2 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                  <i class="bi bi-tag-fill"></i>
+                </div>
+                <div>
+                  <h6 class="fw-bold mb-0 text-dark" th:text="${cat.nombre}">Nombre Categoría</h6>
+                  <span class="badge bg-light text-muted border rounded-pill px-2 py-0 small" th:text="${#lists.size(cat.menus)} + ' menús'">0 menús</span>
+                </div>
+              </div>
+
+              <!-- Acciones -->
+              <div class="d-flex gap-1">
+                <a
+                  th:href="@{/categorias/editar/{id}(id=${cat.id})}"
+                  class="btn btn-sm btn-light text-primary rounded-circle p-2"
+                  title="Editar categoría"
+                >
+                  <i class="bi bi-pencil-fill"></i>
+                </a>
+                <a
+                  th:href="@{/categorias/eliminar/{id}(id=${cat.id})}"
+                  onclick="return confirm('¿Seguro de eliminar esta categoría? Solo se podrá si no tiene menús asignados.');"
+                  class="btn btn-sm btn-light text-danger rounded-circle p-2"
+                  title="Eliminar categoría"
+                >
+                  <i class="bi bi-trash-fill"></i>
+                </a>
+              </div>
+            </div>
+
+            <p class="text-muted small mb-0 lh-sm" th:text="${cat.descripcion}">Descripción de la categoría</p>
+          </div>
+        </div>
+      </main>
+
+      <footer
+        th:replace="~{fragments/componentes :: footer-nav('menus')}"
+      ></footer>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
