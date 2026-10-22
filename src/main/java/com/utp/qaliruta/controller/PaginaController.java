@@ -28,7 +28,7 @@ public class PaginaController {
     @GetMapping("/inicio")
     public String mostrarInicio(Model model) {
         // Obtenemos los menús directamente de la base de datos MySQL
-        model.addAttribute("listaMenus", menuService.listarTodos());
+        model.addAttribute("listaMenus", menuService.listarRecientes());
 
         // th:if para mostrar u ocultar el distintivo de oro
         boolean usuarioTieneOro = true;

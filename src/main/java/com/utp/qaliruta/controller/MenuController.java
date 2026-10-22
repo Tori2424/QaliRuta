@@ -2,6 +2,7 @@ package com.utp.qaliruta.controller;
 
 import com.utp.qaliruta.model.Menu;
 import com.utp.qaliruta.service.CategoriaService;
+import com.utp.qaliruta.service.IngredienteService;
 import com.utp.qaliruta.service.MenuService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -20,10 +21,15 @@ public class MenuController {
 
     private final MenuService menuService;
     private final CategoriaService categoriaService;
+    private final IngredienteService ingredienteService;
 
-    public MenuController(MenuService menuService, CategoriaService categoriaService) {
+    public MenuController(
+            MenuService menuService,
+            CategoriaService categoriaService,
+            IngredienteService ingredienteService) {
         this.menuService = menuService;
         this.categoriaService = categoriaService;
+        this.ingredienteService = ingredienteService;
     }
 
     // LISTAR TODOS (READ)
@@ -38,6 +44,7 @@ public class MenuController {
     public String mostrarFormularioNuevo(Model model) {
         model.addAttribute("menu", new Menu());
         model.addAttribute("listaCategorias", categoriaService.listarTodas());
+        model.addAttribute("listaIngredientes", ingredienteService.listarTodos());
         model.addAttribute("modoEdicion", false);
         return "crear_menu";
     }
@@ -52,6 +59,7 @@ public class MenuController {
         }
         model.addAttribute("menu", menuOpt.get());
         model.addAttribute("listaCategorias", categoriaService.listarTodas());
+        model.addAttribute("listaIngredientes", ingredienteService.listarTodos());
         model.addAttribute("modoEdicion", true);
         return "crear_menu";
     }
@@ -66,6 +74,7 @@ public class MenuController {
 
         if (result.hasErrors()) {
             model.addAttribute("listaCategorias", categoriaService.listarTodas());
+            model.addAttribute("listaIngredientes", ingredienteService.listarTodos());
             model.addAttribute("modoEdicion", menu.getId() != null);
             return "crear_menu";
         }

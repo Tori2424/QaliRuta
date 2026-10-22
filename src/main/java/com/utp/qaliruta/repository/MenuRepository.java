@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MenuRepository extends JpaRepository<Menu, Long> {
     List<Menu> findByCategoriaId(Long categoriaId);
+    List<Menu> findTop4ByOrderByIdDesc();
 }

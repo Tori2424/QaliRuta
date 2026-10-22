@@ -9,27 +9,33 @@ document.addEventListener('DOMContentLoaded', () => {
             contadorTexto.textContent = `SUGERENCIAS RICAS EN HIERRO (${seleccionados.length} SELECCIONADOS)`;
         }
 
-        // Si el usuario no ha escrito manualmente un valor o quiere sumar las sugerencias seleccionadas
-        if (seleccionados.length > 0 && inputHierro && (!inputHierro.value || inputHierro.dataset.autocalc === 'true')) {
-            let totalHierro = 0;
-            seleccionados.forEach(card => {
-                const h = parseFloat(card.dataset.hierro || '0');
-                totalHierro += h;
-            });
-            inputHierro.value = totalHierro.toFixed(1);
-            inputHierro.dataset.autocalc = 'true';
+        if (inputHierro) {
+            if (seleccionados.length > 0) {
+                let totalHierro = 0;
+                seleccionados.forEach(card => {
+                    const h = parseFloat(card.dataset.hierro || '0');
+                    totalHierro += h;
+                });
+                inputHierro.value = totalHierro.toFixed(1);
+            } else {
+                inputHierro.value = '';
+            }
         }
     }
 
-    if (inputHierro) {
-        inputHierro.addEventListener('input', () => {
-            inputHierro.dataset.autocalc = 'false';
-        });
+    // Inicializar contador al cargar la página (para modo edición)
+    const seleccionadosIniciales = document.querySelectorAll('.ingredient-card.selected');
+    if (contadorTexto && seleccionadosIniciales.length > 0) {
+        contadorTexto.textContent = `SUGERENCIAS RICAS EN HIERRO (${seleccionadosIniciales.length} SELECCIONADOS)`;
     }
 
     tarjetasIngredientes.forEach(tarjeta => {
         tarjeta.addEventListener('click', () => {
             tarjeta.classList.toggle('selected');
+            const checkbox = tarjeta.querySelector('.ingredient-checkbox');
+            if (checkbox) {
+                checkbox.checked = tarjeta.classList.contains('selected');
+            }
             actualizarCalculo();                 
         });
     });

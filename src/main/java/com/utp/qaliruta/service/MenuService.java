@@ -31,6 +31,11 @@ public class MenuService {
         return menuRepository.findByCategoriaId(categoriaId);
     }
 
+    @Transactional(readOnly = true)
+    public List<Menu> listarRecientes() {
+        return menuRepository.findTop4ByOrderByIdDesc();
+    }
+
     @Transactional
     public Menu guardar(Menu menu) {
         return menuRepository.save(menu);

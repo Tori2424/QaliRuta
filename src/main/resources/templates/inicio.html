@@ -120,10 +120,16 @@
 
         <div class="px-3 mb-5 pb-4">
           <div class="d-flex justify-content-between align-items-center mb-3">
-            <h6 class="fw-bold mb-0 section-title">Menús contra la anemia</h6>
+            <h6 class="fw-bold mb-0 section-title">Menús Recientes</h6>
             <a th:href="@{/menus}" class="text-success text-decoration-none small fw-bold"
               >Ver todos</a
             >
+          </div>
+
+          <!-- Mensaje cuando no hay menús recientes -->
+          <div th:if="${#lists.isEmpty(listaMenus)}" class="text-center py-4">
+            <i class="bi bi-clock-history text-muted empty-state-icon d-block mb-2"></i>
+            <p class="text-muted small mb-0">No tienes menús recientes</p>
           </div>
 
           <!-- Thymeleaf repetira este bloque por cada menu en la BD -->

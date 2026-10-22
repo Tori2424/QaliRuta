@@ -22,25 +22,27 @@
       <main class="px-4 flex-grow-1 pb-5 mb-5 menus-main">
 
         <!-- Mensajes Flash de Notificación -->
-        <div th:if="${mensajeExito}" class="alert alert-success alert-dismissible fade show rounded-4 py-2 px-3 mb-3 small" role="alert">
-          <i class="bi bi-check-circle-fill me-2"></i>
-          <span th:text="${mensajeExito}"></span>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div th:if="${mensajeExito}" class="alert alert-success d-flex align-items-center justify-content-between fade show rounded-4 py-2 px-3 mb-3 small" role="alert">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-check-circle-fill me-2"></i>
+            <span th:text="${mensajeExito}"></span>
+          </div>
+          <button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
-        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show rounded-4 py-2 px-3 mb-3 small" role="alert">
-          <i class="bi bi-exclamation-triangle-fill me-2"></i>
-          <span th:text="${error}"></span>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div th:if="${error}" class="alert alert-danger d-flex align-items-center justify-content-between fade show rounded-4 py-2 px-3 mb-3 small" role="alert">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            <span th:text="${error}"></span>
+          </div>
+          <button type="button" class="btn-close ms-2" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
         <div class="menu-list-container mb-4 pb-5">
 
           <!-- Mensaje si no hay registros -->
           <div th:if="${#lists.isEmpty(listaMenus)}" class="text-center py-5">
-            <div class="icon-circle bg-white shadow-sm mb-3 mx-auto">
-              <i class="bi bi-inbox text-muted fs-3"></i>
-            </div>
+            <i class="bi bi-cup-hot empty-state-icon text-muted d-block mb-3"></i>
             <h6 class="fw-bold text-muted">Aún no hay menús registrados</h6>
             <p class="text-muted small">Haz clic en el botón inferior para registrar el primero.</p>
           </div>
@@ -86,19 +88,22 @@
             <div class="d-flex flex-column gap-1 ms-2">
               <a
                 th:href="@{/menus/editar/{id}(id=${menu.id})}"
-                class="btn btn-sm btn-light text-primary border-0 rounded-circle p-2"
+                class="btn btn-light btn-action-circle text-primary"
                 title="Editar menú"
               >
                 <i class="bi bi-pencil-fill"></i>
               </a>
-              <a
-                th:href="@{/menus/eliminar/{id}(id=${menu.id})}"
-                onclick="return confirm('¿Estás seguro de eliminar este menú? Esta acción no se puede deshacer.');"
-                class="btn btn-sm btn-light text-danger border-0 rounded-circle p-2"
+              <button
+                type="button"
+                class="btn btn-light btn-action-circle text-danger border-0"
+                data-bs-toggle="modal"
+                data-bs-target="#modalEliminar"
+                th:data-url="@{/menus/eliminar/{id}(id=${menu.id})}"
+                th:data-nombre="${menu.nombre}"
                 title="Eliminar menú"
               >
                 <i class="bi bi-trash-fill"></i>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -119,7 +124,63 @@
       ></footer>
     </div>
 
+    <!-- Modal de Confirmación para Eliminar Menú -->
+    <div
+      class="modal fade"
+      id="modalEliminar"
+      tabindex="-1"
+      aria-labelledby="modalEliminarLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-confirm-dialog px-3">
+        <div class="modal-content rounded-4 border-0 shadow text-center p-3">
+          <div class="modal-body pb-2 pt-3">
+            <div
+              class="mx-auto mb-3 bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center"
+              style="width: 52px; height: 52px;"
+            >
+              <i class="bi bi-trash3-fill fs-4"></i>
+            </div>
+            <h6 class="fw-bold text-dark mb-2" id="modalEliminarLabel">¿Eliminar menú?</h6>
+            <p class="text-muted small mb-0">
+              ¿Estás seguro de que deseas eliminar <strong id="nombreElementoEliminar" class="text-dark">este menú</strong>? Esta acción no se puede deshacer.
+            </p>
+          </div>
+          <div class="modal-footer border-0 pt-3 pb-1 justify-content-center gap-2">
+            <button
+              type="button"
+              class="btn btn-light rounded-pill px-4 fw-semibold small"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <a
+              id="btnConfirmarEliminar"
+              href="#"
+              class="btn btn-danger rounded-pill px-4 fw-semibold small shadow-sm"
+            >
+              Sí, eliminar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const modalEliminar = document.getElementById('modalEliminar');
+      if (modalEliminar) {
+        modalEliminar.addEventListener('show.bs.modal', function (event) {
+          const button = event.relatedTarget;
+          const url = button.getAttribute('data-url');
+          const nombre = button.getAttribute('data-nombre');
+          const btnConfirmar = document.getElementById('btnConfirmarEliminar');
+          const spanNombre = document.getElementById('nombreElementoEliminar');
+          if (btnConfirmar) btnConfirmar.setAttribute('href', url);
+          if (spanNombre && nombre) spanNombre.textContent = '"' + nombre + '"';
+        });
+      }
+    </script>
   </body>
 </html>

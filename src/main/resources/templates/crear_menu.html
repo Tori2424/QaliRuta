@@ -65,7 +65,7 @@
               <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
             </div>
 
-            <!-- Campo 4: Hierro -->
+            <!-- Campo 4: Hierro (No editable, autocalculado por ingredientes) -->
             <div class="col-6">
               <label class="form-label-custom">HIERRO (mg Fe) *</label>
               <input
@@ -74,9 +74,10 @@
                 min="0.1"
                 id="inputHierro"
                 th:field="*{contenidoHierro}"
-                class="form-control input-custom"
+                class="form-control input-custom bg-light"
                 th:classappend="${#fields.hasErrors('contenidoHierro')} ? 'is-invalid' : ''"
-                placeholder="Ej. 12.5"
+                readonly
+                placeholder="Automático"
               />
               <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('contenidoHierro')}" th:errors="*{contenidoHierro}"></div>
             </div>
@@ -95,59 +96,33 @@
             <div class="invalid-feedback d-block text-danger small mt-1" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"></div>
           </div>
 
-          <!-- Sección visual interactiva de ingredientes de referencia -->
+          <!-- Sección visual interactiva de ingredientes desde la Base de Datos -->
           <label id="contador-ingredientes" class="form-label-custom mb-2 d-block text-muted"
             >SUGERENCIAS RICAS EN HIERRO (CLICK PARA SELECCIONAR)</label
           >
 
           <div class="d-flex flex-column gap-2 mb-4">
-            <div class="ingredient-card" data-nombre="Sangrecita" data-hierro="29.5">
+            <div
+              th:each="ing : ${listaIngredientes}"
+              class="ingredient-card"
+              th:classappend="${menu.tieneIngrediente(ing.id)} ? 'selected' : ''"
+              th:attr="data-id=${ing.id},data-nombre=${ing.nombre},data-hierro=${ing.contenidoHierro}"
+            >
+              <!-- Checkbox oculto para binding con Spring MVC -->
+              <input
+                type="checkbox"
+                name="ingredientes"
+                th:value="${ing.id}"
+                th:checked="${menu.tieneIngrediente(ing.id)}"
+                class="d-none ingredient-checkbox"
+              />
               <div class="ingredient-left">
                 <div class="check-circle"><i class="bi bi-check"></i></div>
-                <p class="ingredient-name">Sangrecita de pollo</p>
+                <p class="ingredient-name" th:text="${ing.nombre}">Nombre de ingrediente</p>
               </div>
               <div class="iron-info">
-                <i class="bi bi-droplet-fill text-danger me-1"></i> 29.5 mg
-              </div>
-            </div>
-
-            <div class="ingredient-card" data-nombre="Bazo de res" data-hierro="28.7">
-              <div class="ingredient-left">
-                <div class="check-circle"><i class="bi bi-check"></i></div>
-                <p class="ingredient-name">Bazo de res</p>
-              </div>
-              <div class="iron-info">
-                <i class="bi bi-droplet-fill text-danger me-1"></i> 28.7 mg
-              </div>
-            </div>
-
-            <div class="ingredient-card" data-nombre="Hígado de res" data-hierro="8.0">
-              <div class="ingredient-left">
-                <div class="check-circle"><i class="bi bi-check"></i></div>
-                <p class="ingredient-name">Hígado de res</p>
-              </div>
-              <div class="iron-info">
-                <i class="bi bi-droplet-fill text-danger me-1"></i> 8.0 mg
-              </div>
-            </div>
-
-            <div class="ingredient-card" data-nombre="Lentejas" data-hierro="3.3">
-              <div class="ingredient-left">
-                <div class="check-circle"><i class="bi bi-check"></i></div>
-                <p class="ingredient-name">Lentejas cocidas</p>
-              </div>
-              <div class="iron-info">
-                <i class="bi bi-droplet-fill text-danger me-1"></i> 3.3 mg
-              </div>
-            </div>
-
-            <div class="ingredient-card" data-nombre="Espinaca" data-hierro="2.7">
-              <div class="ingredient-left">
-                <div class="check-circle"><i class="bi bi-check"></i></div>
-                <p class="ingredient-name">Espinaca fresca</p>
-              </div>
-              <div class="iron-info">
-                <i class="bi bi-droplet-fill text-danger me-1"></i> 2.7 mg
+                <i class="bi bi-droplet-fill text-danger me-1"></i>
+                <span th:text="${ing.contenidoHierro} + ' mg'">0.0 mg</span>
               </div>
             </div>
           </div>
