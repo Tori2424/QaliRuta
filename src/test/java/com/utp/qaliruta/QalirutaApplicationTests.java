@@ -36,14 +36,14 @@ class QalirutaApplicationTests {
     @Test
     @DisplayName("Operaciones CRUD de Categoría y Menú con Clave Foránea")
     void testCrudOperations() {
-        // 1. READ inicial (datos semilla)
+        // read inicial
         List<Categoria> categorias = categoriaService.listarTodas();
         assertFalse(categorias.isEmpty(), "Deben existir categorías creadas por el DataInitializer");
 
         List<Menu> menus = menuService.listarTodos();
         assertFalse(menus.isEmpty(), "Deben existir menús creados por el DataInitializer");
 
-        // 2. CREATE (Inserción)
+        // 2. insercion
         Categoria nuevaCat = new Categoria("Sopas y Caldos", "Caldos reconstituyentes altos en nutrientes");
         Categoria catGuardada = categoriaService.guardar(nuevaCat);
         assertNotNull(catGuardada.getId(), "La categoría debe tener ID generado por MySQL");
@@ -59,14 +59,14 @@ class QalirutaApplicationTests {
         assertNotNull(menuGuardado.getId(), "El menú debe tener ID generado por MySQL");
         assertEquals(catGuardada.getId(), menuGuardado.getCategoria().getId(), "La clave foránea debe coincidir");
 
-        // 3. UPDATE (Actualización)
+        // 3. update
         menuGuardado.setPrecio(13.5);
         menuGuardado.setContenidoHierro(15.0);
         Menu menuActualizado = menuService.guardar(menuGuardado);
         assertEquals(13.5, menuActualizado.getPrecio());
         assertEquals(15.0, menuActualizado.getContenidoHierro());
 
-        // 4. DELETE (Eliminación)
+        // 4. delete
         Long menuId = menuActualizado.getId();
         menuService.eliminar(menuId);
         assertTrue(menuService.buscarPorId(menuId).isEmpty(), "El menú eliminado ya no debe existir");
