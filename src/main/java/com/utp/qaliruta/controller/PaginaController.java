@@ -15,7 +15,8 @@ public class PaginaController {
         this.menuService = menuService;
     }
 
-    @GetMapping("/")
+    // ruta principal de bienvenida
+    @GetMapping({"/", "/index"})
     public String mostrarIndex() {
         return "index";
     }
